@@ -24,7 +24,7 @@ end
 
 deployment do
   delivery :ssh do
-    user(ENV['TARGET_USER']
+    user(ENV['TARGET_USER'])
     password(ENV['TARGET_PASSWORD'])
     role(:app, ENV['TARGET_HOST'])
   end
