@@ -18,4 +18,8 @@ bundle install
 
 ## Usage
 
-TODO
+To provision a server run:
+
+```
+./provision -h IP -u root -p PASSWORD
+```
