@@ -1,0 +1,40 @@
+#!/usr/bin/env ruby
+
+require "optparse"
+
+options = {
+  :host     => nil,
+  :user     => 'root',
+  :password => 'root',
+  :debug    => false
+}
+
+optparse = OptionParser.new do |opts|
+  opts.on("-h", "--help", "Display this information.") do
+    puts(opts)
+    exit
+  end
+
+  opts.on("-h", "--host HOST", "Target hostname") do |val|
+    options[:host] = val
+  end
+
+  opts.on("-u", "--user USER", "Target username") do |val|
+    options[:user] = val
+  end
+
+  opts.on("-p", "--password PASSWORD", "Server password") do |val|
+    options[:password] = val
+  end
+
+  opts.on("-d", "--debug", "Debug mode") do
+    options[:debug] = true
+  end
+end
+
+begin
+  optparse.parse!
+rescue OptionParser::InvalidOption, OptionParser::MissingArgument
+  puts optparse
+  exit(1)
+end
