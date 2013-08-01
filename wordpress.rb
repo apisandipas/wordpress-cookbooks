@@ -11,7 +11,6 @@ policy :wordpress, :roles => :app do
   requires :subversion
   requires :imagemagick
   requires :mysql_client
-  requires :postgresql_client
   requires :add_user
   requires :setup_user
   requires :nginx
@@ -22,10 +21,12 @@ policy :wordpress, :roles => :app do
   requires :clean_logs
 end
 
+puts ENV.keys
+
 deployment do
   delivery :ssh do
-    user(ENV['TARGET_USER'])
-    password(ENV['TARGET_PASSWORD'])
-    role(:app, ENV['TARGET_HOST'])
+    user ENV['TARGET_USER']
+    password ENV['TARGET_PASSWORD']
+    role :app, ENV['TARGET_HOST']
   end
 end

@@ -14,19 +14,12 @@ package :add_user do
     post :install, "chmod 700 #{user_home}/.ssh"
     post :install, "chmod 600 #{user_home}/.ssh/*"
     post :install, 'echo "apps ALL=NOPASSWD: ALL" >> /etc/sudoers'
+    post :install, "chown -R #{user}:#{user} #{user_home}"
   end
-
-  transfer "files/add_user/rvmrc",  "#{user_home}/.rvmrc"
-  transfer "files/add_user/gemrc",  "#{user_home}/.gemrc"
-
-  runner "chown -R #{user}:#{user} #{user_home}"
 
   verify do
     has_user user
     has_group user
-
-    has_file "#{user_home}/.rvmrc"
-    has_file "#{user_home}/.gemrc"
 
     file_contains "/etc/sudoers", "#{user} ALL=NOPASSWD"
   end

@@ -1,4 +1,4 @@
-package :cleanup do
+package :clean_logs do
   description "Clean logs and other things"
 
   runner "echo > /var/log/bootstrap.log"

@@ -50,8 +50,11 @@ ENV['TARGET_HOST']     = options[:host]
 ENV['TARGET_USER']     = options[:user]
 ENV['TARGET_PASSWORD'] = options[:password]
 
-command = ["sprinkle"]
-command << "-v" if options[:debug]
-command << "-s ./wordpress.rb"
+command = [
+  "TARGET_HOST=#{options[:host]}",
+  "TARGET_USER=#{options[:user]}",
+  "TARGET_PASSWORD=#{options[:password]}",
+  "sprinkle -v -s ./wordpress.rb"
+]
 
 exec(command.join(' '))
