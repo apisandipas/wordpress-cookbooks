@@ -1,6 +1,8 @@
 package :apt_sources do
   description "Setup custom repositories"
 
+  runner "apt-get update -y"
+
   apt "python-software-properties" do
     post :install, "add-apt-repository -y ppa:git-core/ppa"
     post :install, "add-apt-repository -y ppa:svn/ppa"
