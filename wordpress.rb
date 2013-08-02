@@ -10,6 +10,7 @@ policy :wordpress, :roles => :app do
   requires :git
   requires :subversion
   requires :imagemagick
+  requires :mysql
   requires :mysql_client
   requires :add_user
   requires :setup_user
