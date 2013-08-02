@@ -22,8 +22,6 @@ policy :wordpress, :roles => :app do
   requires :clean_logs
 end
 
-puts ENV.keys
-
 deployment do
   delivery :ssh do
     user ENV['TARGET_USER']
