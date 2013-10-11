@@ -1,4 +1,3 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
-gem 'rake'
-gem 'sprinkle'
+gem "sprinkle", "0.7.6.1"
