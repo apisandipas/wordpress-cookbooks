@@ -1,0 +1,43 @@
+target:
+  host: "HOST"
+  user: "USER"
+  password: "PASSWORD"
+
+packages:
+  - "apt_update"
+  - "apt_upgrade"
+  - "system_tools"
+  - "ppa"
+  - "sudo"
+  - "locales"
+  - "ntpdate"
+  - "build_essentials"
+  - "git"
+  - "subversion"
+  - "imagemagick"
+  - "mysql"
+  - "mysql_client"
+  - "mysql_setup"
+  - "add_user"
+  - "setup_user"
+  - "nginx"
+  - "php5"
+  - "php5_extensions"
+  - "php5_fpm"
+  - "wordpress"
+  - "wordpress_vhost"
+  - "clean_logs"
+
+user:
+  name: "apps"
+  password: "apps"
+  sudo: true
+
+mysql:
+  root:
+    password: "password"
+  user:
+    name: "apps"
+    password: "apps"
+  database:
+    name: "apps"
