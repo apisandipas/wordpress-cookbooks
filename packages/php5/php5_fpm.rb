@@ -8,6 +8,7 @@ package :php5_fpm do
     post :install, "rm /etc/php5/fpm/php.ini && ln -s /etc/php5/php.ini /etc/php5/fpm/php.ini"
     post :install, "cat /tmp/www.conf > /etc/php5/fpm/pool.d/www.conf"
     post :install, "rm /tmp/www.conf"
+    post :install, "/etc/init.d/php5-fpm restart"
   end
 
   verify do
