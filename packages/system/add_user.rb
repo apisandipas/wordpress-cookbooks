@@ -1,8 +1,8 @@
 package :add_user do
   description 'Adds a applications user'
 
-  user       = "apps"
-  password   = "apps"
+  user       = $config.user.name
+  password   = $config.user.password
   user_home  = "/home/#{user}"
   user_shell = "/bin/bash"
 
@@ -13,14 +13,19 @@ package :add_user do
     post :install, "touch #{user_home}/.bash_history"
     post :install, "chmod 700 #{user_home}/.ssh"
     post :install, "chmod 600 #{user_home}/.ssh/*"
-    post :install, 'echo "apps ALL=NOPASSWD: ALL" >> /etc/sudoers'
     post :install, "chown -R #{user}:#{user} #{user_home}"
+  end
+
+  if $config.user.sudo
+    runner "echo \"#{user} ALL=NOPASSWD: ALL\" >> /etc/sudoers"
   end
 
   verify do
     has_user user
     has_group user
 
-    file_contains "/etc/sudoers", "#{user} ALL=NOPASSWD"
+    if $config.user.sudo
+      file_contains "/etc/sudoers", "#{user} ALL=NOPASSWD"
+    end
   end
 end

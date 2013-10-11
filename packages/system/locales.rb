@@ -1,6 +1,4 @@
 package :locales do
-  description "Setup system locales"
-  
   apt "locales"
 
   transfer "files/locales/environment", "/tmp/environment" do
@@ -18,6 +16,7 @@ package :locales do
   end
 
   verify do
+    has_apt "locales"
     has_file "/etc/environment"
     file_contains "/etc/environment", "en_US.UTF-8"
   end

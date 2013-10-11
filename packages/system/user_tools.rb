@@ -1,6 +1,4 @@
 package :user_tools do
-  description "Set of user tools to manage server"
-
   apt "nano"
   apt "inetutils-ftp"
   apt "inetutils-telnet"

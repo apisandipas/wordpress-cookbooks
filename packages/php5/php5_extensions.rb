@@ -1,27 +1,28 @@
 package :php5_extensions do
-  description 'PHP5 Extensions'
   requires :php5
 
-  ext_path = '/etc/php5/conf.d'
+  packages = [
+    "php-pear",
+    "php5-gd",
+    "php5-xcache",
+    "php5-mysql",
+    "php5-pgsql",
+    "php5-mcrypt",
+    "php5-xdebug", 
+    "php5-curl"
+  ]
 
-  apt 'php-pear'
-  apt 'php5-gd', 'php5-xcache'
-  apt 'php5-mysql', 'php5-pgsql', 'php5-mcrypt'
-  apt 'php5-xdebug', 'php5-curl'
+  apt(packages)
 
-  runner 'prinf "yes\n" | pecl install memcache' do
-    post :install, 'echo "extension=memcache.so" > /etc/php5/conf.d/memcache.ini'
+  ext_path = "/etc/php5/mods-available"
+
+  runner 'printf "yes\n" | pecl install memcache' do
+    post :install, "echo \"extension=memcache.so\" > #{ext_path}/memcache.ini"
+    post :install, "ln -s #{ext_path}/memcache.ini /etc/php5/conf.d/20-memcache.ini"
   end
 
   verify do
-    has_apt 'php-pear'
-    has_apt 'php5-gd'
-    has_apt 'php5-xcache'
-    has_apt 'php5-mysql'
-    has_apt 'php5-pgsql'
-    has_apt 'php5-mcrypt'
-    has_apt 'php5-xdebug'
-    has_apt 'php5-curl'
+    packages.each { |name| has_apt(name) }
 
     has_file "#{ext_path}/pdo_mysql.ini"
     has_file "#{ext_path}/pgsql.ini"

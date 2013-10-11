@@ -1,6 +1,4 @@
 package :mysql_client do
-  description "MySQL Client"
-
   apt "mysql-client", "libmysqlclient-dev"
 
   verify do

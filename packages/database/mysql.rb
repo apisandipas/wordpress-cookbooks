@@ -1,13 +1,13 @@
 package :mysql do
-  description "MySQL Server 5.5"
+  apt "mysql-server"
 
-  apt "mysql-server" do
-    post :install, "/etc/init.d/mysql restart"
-  end
+  root_password = $config.mysql.root.password
+  runner "mysqladmin -u root password #{root_password}"
 
   verify do
     has_apt "mysql-server"
     has_executable "mysqld"
     has_executable "mysqld_safe"
+    runs_without_error "mysql -u root -p#{root_password} -e \"SHOW DATABASES;\""
   end
 end
