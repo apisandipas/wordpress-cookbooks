@@ -18,8 +18,14 @@ bundle install
 
 ## Usage
 
+Copy config file:
+
+```
+cp config.yml.sample config.yml
+```
+
 To provision a server run:
 
 ```
-./provision -h IP -u root -p PASSWORD
+bundle exec sprinkle -s ./build.rb 
 ```
