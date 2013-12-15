@@ -14,6 +14,7 @@ deployment do
   delivery :capistrano do
     set  :user,     $config.target.user
     set  :password, $config.target.password
+    set  :port,     $config.target.port
     role :app,      $config.target.host
   end
 
