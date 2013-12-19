@@ -2,14 +2,53 @@
 
 Set of cookbooks to provision WordPress hosts with Sprinkle
 
-## PHP Settings
+## Installation
+
+Clone repository and install dependencies:
+
+```
+git clone https://github.com/doejo/wordpress-cookbooks.git
+bundle install
+```
+
+## Usage
+
+Create a new config.yml or copy an example one:
+
+```
+cp config.yml.sample config.yml
+```
+
+Change target server ip and password:
+
+```yaml
+target:
+  host: "ip address of your server"
+  user: "root"
+  password: "root"
+  port: 22
+```
+
+Then start build script:
+
+```
+bundle exec sprinkle -s ./build.rb
+```
+
+## Settings
+
+**PHP Settings**
 
 - `max_execution_time = 60`
 - `memory_limit = 256M`
 - `post_max_size = 16M`
 - `upload_max_filesize = 16M`
 
-## PHP-FPM Settings
+**PHP-FPM Settings**
 
 - `php_admin_value[memory_limit] = 256M`
 - `php_admin_value[max_execution_time] = 60`
+
+## License
+
+The MIT License (MIT)
