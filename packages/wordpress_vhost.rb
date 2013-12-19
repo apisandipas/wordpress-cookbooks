@@ -7,7 +7,7 @@ package :wordpress_vhost do
   end
 
   verify do
-    file_exists "#{sites_path}/wordpress.conf"
+    has_file "#{sites_path}/wordpress.conf"
     file_contains "#{sites_path}/wordpress.conf", "/home/apps/www/current"
   end
 end
