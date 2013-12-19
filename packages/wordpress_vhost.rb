@@ -1,11 +1,13 @@
 package :wordpress_vhost do
-  transfer "files/nginx/php_vhost.conf", "/tmp/vhost.conf" do
-    post :install, "cat /tmp/vhost.conf > /etc/nginx/sites-enabled/default"
-    post :install, "rm /tmp/vhost.conf"
+  sites_path = "/etc/nginx/sites-enabled"
+
+  transfer "files/nginx/wordpress.conf", "#{sites_path}/wordpress.conf" do
+    post :install, "rm #{sites_path}/default"
     post :install, "/etc/init.d/nginx reload"
   end
 
   verify do
-    file_contains "/etc/nginx/sites-enabled/default", "/home/apps/www/current"
+    file_exists "#{sites_path}/wordpress.conf"
+    file_contains "#{sites_path}/wordpress.conf", "/home/apps/www/current"
   end
 end
