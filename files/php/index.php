@@ -1,1 +1,1 @@
-Site is ready
+<?php echo "Host is ready"; ?>
