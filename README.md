@@ -2,6 +2,17 @@
 
 Set of cookbooks to provision WordPress hosts with Sprinkle
 
+## Overview
+
+Cookbooks are made for 64-bit Ubuntu 12.04 LTS and will provide the following stack:
+
+- PHP 5.4 + extensions
+- PHP-FPM
+- Nginx
+- Git
+- Subversion
+- MySQL
+
 ## Installation
 
 Clone repository and install dependencies:
