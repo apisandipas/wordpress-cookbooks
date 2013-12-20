@@ -12,6 +12,7 @@ Cookbooks are made for 64-bit Ubuntu 12.04 LTS and will provide the following st
 - Git
 - Subversion
 - MySQL
+- Memcached
 
 ## Installation
 
