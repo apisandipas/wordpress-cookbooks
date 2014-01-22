@@ -64,3 +64,5 @@ bundle exec sprinkle -s ./build.rb
 ## License
 
 The MIT License (MIT)
+
+Copyright (c) 2013-2014 Doejo LLC
