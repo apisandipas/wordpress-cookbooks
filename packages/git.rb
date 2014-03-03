@@ -7,6 +7,6 @@ package :git do
 
   verify do
     has_apt "git"
-    has_executable_with_version "git", "1.8", "--version"
+    has_executable_with_version "git", "1.9", "--version"
   end
 end
