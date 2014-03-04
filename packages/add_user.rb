@@ -14,7 +14,7 @@ package :add_user do
   end
 
   # Setup SSH credentials
-  runner 'ssh-kegen -b 2048 -t rsa -f /tmp/sshkey -q -N ""'
+  runner "ssh-keygen -b 2048 -t rsa -f #{user_home}/.ssh/id_rsa -q -N \"\""
 
   # Make sure ssh credentials have proper permissions
   runner "chmod 700 #{user_home}/.ssh"

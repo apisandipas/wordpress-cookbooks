@@ -29,6 +29,11 @@ packages:
   - "wordpress_vhost"
   - "clean_logs"
 
+firewall:
+  open_ports:
+    - 22
+    - 80
+
 user:
   name: "apps"
   password: "apps"
