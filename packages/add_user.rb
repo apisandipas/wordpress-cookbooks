@@ -13,12 +13,15 @@ package :add_user do
     post :install, "touch #{user_home}/.bash_history"
   end
 
-  # Setup SSH credentials
-  runner "ssh-keygen -b 2048 -t rsa -f #{user_home}/.ssh/id_rsa -q -N \"\""
-
   # Make sure ssh credentials have proper permissions
   runner "chmod 700 #{user_home}/.ssh"
   runner "chmod 600 #{user_home}/.ssh/*"
+
+  # Force home directory ownership
+  runner "chown -R #{user}:#{user} #{user_home}"
+
+  # Setup SSH credentials
+  runner "sudo -u #{user} -H ssh-keygen -b 2048 -t rsa -f #{user_home}/.ssh/id_rsa -q -N \"\""
 
   # Add user to passwordless sudoers
   if $config.user.sudo
@@ -28,7 +31,7 @@ package :add_user do
   # Install current user ssh key
   transfer File.expand_path("~/.ssh/id_rsa.pub"), "#{user_home}/.ssh/authorized_keys"
 
-  # Force home directory ownership
+  # Force home directory ownership again
   runner "chown -R #{user}:#{user} #{user_home}"
 
   verify do
