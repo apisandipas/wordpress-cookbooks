@@ -47,6 +47,12 @@ Then start build script:
 bundle exec sprinkle -s ./build.rb
 ```
 
+After successful build reboot machine:
+
+```
+ssh root@{IP} reboot
+```
+
 ## Settings
 
 **PHP Settings**
