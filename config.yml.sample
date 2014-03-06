@@ -14,6 +14,12 @@ user:
   password: "apps"
   sudo: true
 
+php:
+  max_execution_time: "60"
+  memory_limit: "256M"
+  post_max_size: "16M"
+  upload_max_filesize: "16M"
+
 mysql:
   root:
     password: "password"
